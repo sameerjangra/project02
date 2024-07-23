@@ -2,6 +2,7 @@ const express =require("express");
 const UserRoutes = require("./routes/userRoutes");
 const ProfileRoutes =  require("./routes/profileRoutes")
 const mongoose =require ('mongoose')
+require('dotenv').config()
 
 const app =express();
 
@@ -14,7 +15,7 @@ app.get('/',(req,res,next)=>{
 app.use('/api/users',UserRoutes)
 app.use('/api/users',ProfileRoutes)
 
-mongoose.connect("mongodb+srv://marin:marin@atlascluster.wnza3rf.mongodb.net/project002?retryWrites=true&w=majority&appName=AtlasCluster")
+mongoose.connect(process.env.MONGODB_CONNECT)
 .then((db)=>{
     console.log("database is connected")
 })
